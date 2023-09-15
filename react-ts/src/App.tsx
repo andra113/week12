@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FieldInputProps, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { Button, Input, DatePicker } from 'antd';
 
@@ -77,17 +77,16 @@ const App = () => {
                 <ErrorMessage name="email" component="div" className="error-message" />
               </div>
               <div>
-              <label>Date of Birth:</label>
+                <label>Date of Birth:</label>
                 <Field name="dob">
-                  {({ field, form }) => (
-                    <DatePicker
-                      {...field}
-                      format="YYYY-MM-DD" // Make sure the format is correct
-                      onChange={(date) => form.setFieldValue(field.name, date)}
-                    />
-                  )}
-                </Field>
-                <ErrorMessage name="dob" component="div" className="error-message" />
+                  {({ field, form }: { field: FieldInputProps<never>; form: FormikProps<never> }) => (
+                  <DatePicker
+                    {...field}
+                    format="YYYY-MM-DD"
+                    onChange={(date) => form.setFieldValue(field.name, date)}
+                  />
+                )}
+</Field>
               </div>
             </>
           )}
